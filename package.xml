@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fleet_turtle</name>
+  <version>1.0.0</version>
+  <description>multi agent turtle</description>
+
+  <maintainer email="francesco.cerri2@studio.unibo.it">francesco</maintainer>
+
+  <license>TODO</license>
+
+  <url type="repository">http://github.com/gnoccoalpesto/navigationturt</url>
+
+  <author email="francesco.cerri2@studio.unibo.it">francesco</author> -->
+
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>actionlib_msgs</build_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>actionlib_msgs</exec_depend>
+
+  <export>
+  </export>
+</package>
