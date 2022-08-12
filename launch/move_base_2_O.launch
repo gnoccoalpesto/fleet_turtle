@@ -18,16 +18,16 @@
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base2" output="screen">
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/dwa_local_planner_params.yaml" command="load" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find fleet_turtle)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find fleet_turtle)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find fleet_turtle)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find fleet_turtle)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find fleet_turtle)/param/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find fleet_turtle)/param/move_base_params.yaml" command="load" />
     <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
     <!--
-    <rosparam file="$(find multi_turtlebots_nav)/param/global_planner_params.yaml" command="load" />
-    <rosparam file="$(find multi_turtlebots_nav)/param/navfn_global_planner_params.yaml" command="load" />
+    <rosparam file="$(find fleet_turtle)/param/global_planner_params.yaml" command="load" />
+    <rosparam file="$(find fleet_turtle)/param/navfn_global_planner_params.yaml" command="load" />
      external params file that could be loaded into the move_base namespace 
     <rosparam file="$(arg custom_param_file)" command="load" />
     -->

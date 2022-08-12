@@ -1,0 +1,24 @@
+<launch>
+  <!-- TELEOPERATION FOR TOI -->
+  <arg name="node_start_delay" default="1.0"/>
+  <arg name="robot_number" default="1"/>
+  
+  <param if="$(eval robot_number == '1' or robot_number == '4' or robot_number == '5' or robot_number == '6' )" 
+    name="model" value="burger"/>
+  <param if="$(eval robot_number == '2' or robot_number == '3')" 
+    name="model" value="waffle"/>
+
+  <!-- turtlebot3_teleop_key already has its own built-in velocity smoother -->
+
+  <node     pkg="turtlebot3_teleop" 
+            type="turtlebot3_teleop_key" 
+            name="turtlebot3_teleop_keyboard"  
+            respawn="false" 
+            output="screen" 
+            args="" 
+            launch-prefix="xterm -e /bin/bash -c 'sleep $(arg node_start_delay); $0 $@' "
+  >
+    <remap from="cmd_vel" to="/robot$(arg robot_number)/cmd_vel"/>
+  </node>
+
+</launch>

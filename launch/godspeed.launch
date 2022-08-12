@@ -1,0 +1,23 @@
+<launch>
+  <arg name="gui" default="false"/>
+  <arg name="teleoperation_mode" default="false"/>
+  <arg name="robot_number" default="1"/>
+  
+  
+  <!-- SIMULATION -->
+  <include file="$(find fleet_turtle)/launch/simulation.launch">
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+
+  <!-- NAVIGATION -->
+  <include file="$(find fleet_turtle)/launch/navigation.launch">
+    <arg name="teleoperation_mode" value="$(arg teleoperation_mode)"/>
+    <arg name="robot_number" value="$(arg robot_number)"/>
+  </include>
+
+
+  <!-- GOAL PLANNING -->
+
+
+</launch>

@@ -10,12 +10,14 @@ find_package(catkin
     rospy
     roscpp
     std_msgs
+    geometry_msgs
     message_generation
 )
 
 add_message_files(
   FILES
     Setpoint.msg
+    SetpointMulti.msg
 )
 
 # add_service_files(
@@ -33,6 +35,7 @@ add_action_files(
 generate_messages(
   DEPENDENCIES
     std_msgs
+    geometry_msgs
     actionlib_msgs
 )
 

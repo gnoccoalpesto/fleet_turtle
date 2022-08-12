@@ -5,10 +5,13 @@
       4,5,6: AT
   -->
 
+  <arg name="teleoperation_mode" default="false"/>
+  <arg name="robot_number" default="1"/>
+
 <!-- MAP -->
   <node name="map_server" pkg="map_server" type="map_server" 
         args="$(find fleet_turtle)/maps/map_turtleworld.yaml" >
-    <param name="frame_id" value="/map" 
+    <param name="frame_id" value="map" 
   /></node>
 
 
@@ -20,14 +23,37 @@
     
 
 <!-- ADAPTIVE MONTE CARLO LOCALIZATION -->
-    <include file="$(find fleet_turtle)/launch/amcl_robot1_O.launch" />
-    <include file="$(find fleet_turtle)/launch/amcl_robot2_O.launch" />
-    <include file="$(find fleet_turtle)/launch/amcl_robot3_O.launch" />
-    <include file="$(find fleet_turtle)/launch/amcl_robot4_O.launch" />
-    <include file="$(find fleet_turtle)/launch/amcl_robot5_O.launch" />
-    <include file="$(find fleet_turtle)/launch/amcl_robot6_O.launch" />
+    <include file="$(find fleet_turtle)/launch/amcl_robot1_O.launch" >
+    <!-- <arg name="global_frame_id" value="/map"/>
+    <arg name="use_map_topic"   value="true"/> -->
+    </include>
+    <include file="$(find fleet_turtle)/launch/amcl_robot2_O.launch" >
+    <!-- <arg name="global_frame_id" value="/map"/>
+    <arg name="use_map_topic"   value="true"/> -->
+    </include>
+    <include file="$(find fleet_turtle)/launch/amcl_robot3_O.launch" >
+    <!-- <arg name="global_frame_id" value="/map"/> -->
+    <arg name="use_map_topic"   value="true"/>
+    </include>
+    <include file="$(find fleet_turtle)/launch/amcl_robot4_O.launch" >
+    <!-- <arg name="global_frame_id" value="/map"/>
+    <arg name="use_map_topic"   value="true"/> -->
+    </include>
+    <include file="$(find fleet_turtle)/launch/amcl_robot5_O.launch" >
+    <!-- <arg name="global_frame_id" value="/map"/>
+    <arg name="use_map_topic"   value="true"/> -->
+    </include>
+    <include file="$(find fleet_turtle)/launch/amcl_robot6_O.launch" >
+    <!-- <arg name="global_frame_id" value="/map"/>
+    <arg name="use_map_topic"   value="true"/> -->
+    </include>
 
 
+  <!-- TOI TELEOPERATION -->
+  <include if="$(arg teleoperation_mode)"
+        file="$(find fleet_turtle)/launch/teleoperation.launch">
+      <arg name="robot_number" value="$(arg robot_number)"/>
+  </include>
 <!-- MOVE_BASE PLANNING STACK-->
 	<include file="$(find fleet_turtle)/launch/move_base_1_O.launch" />
 	<include file="$(find fleet_turtle)/launch/move_base_2_O.launch" />	
