@@ -1,0 +1,133 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+  <arg name="gui" default="true " doc="toggle gazebo gui"/>
+
+  <!-- SIMULATION -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+  <!-- FLEET -->
+  <include file="$(find fleet_turtle)/launch/fleet.launch"/>
+
+
+  <!-- RVIZ -->
+  <node name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find fleet_turtle)/rviz/escort_fleet.rviz" />
+
+
+  <!-- MAP -->
+  <node name="map_server" pkg="map_server" type="map_server" 
+        args="$(find fleet_turtle)/maps/map_turtleworld.yaml" >
+    <param name="frame_id" value="/map" />
+  </node>
+
+
+  <!-- INITIAL POSITIONING -->
+  <!-- <node pkg="fleet_turtle"
+        type="initial_position.py" 
+        name="initializer"
+        >
+    <param name="~target_frame" value="base_footprint"/>
+    <param name="~source_frame" value="odom"/>
+  </node> -->
+
+
+  <!-- GOAL BROADCASTER NODE -->
+  <!--<group unless="$(arg uv_cleaning)">
+    <node name="action_move_base" 
+    pkg="fleet_turtle" 
+    type="action_move_base.py" 
+    respawn="true"
+    output="screen" 
+    args="" 
+    launch-prefix="xterm -e /bin/bash -c 'sleep $(arg node_start_delay); $0 $@' "
+    >
+      <param name="~objectives_file_location" value="$(arg objectives_file_location)"/>
+    </node>
+  </group>-->
+  
+
+  <!-- MOVE_BASE -->
+  <!-- <include file="$(find fleet_turtle)/launch/include/move_base.launch">
+    <arg name="robot_name" value="AT2" />
+  </include>  -->
+
+	<include file="$(find fleet_turtle)/launch/move_base_robot.launch" >
+      <arg name="robot_name" value="TOI"/>
+  </include>
+	<include file="$(find fleet_turtle)/launch/move_base_robot.launch" >	
+      <arg name="robot_name" value="DT0"/>
+  </include>
+	<include file="$(find fleet_turtle)/launch/move_base_robot.launch" >	
+      <arg name="robot_name" value="DT1"/>
+  </include>
+	<include file="$(find fleet_turtle)/launch/move_base_robot.launch" >
+      <arg name="robot_name" value="AT0"/>
+  </include>
+	<include file="$(find fleet_turtle)/launch/move_base_robot.launch" >
+      <arg name="robot_name" value="AT1"/>
+  </include>
+	<include file="$(find fleet_turtle)/launch/move_base_robot.launch" >
+      <arg name="robot_name" value="AT2"/>
+  </include>
+
+
+  <!-- LOCALIZATION -->
+  <!-- <include file="$(find fleet_turtle)/launch/include/amcl.launch">
+    <arg name="robot_name" value="DT0" />
+    <arg name="initial_pose_x" value="-2.0"/>
+    <arg name="initial_pose_y" value="1.0"/>
+    <arg name="initial_pose_a" value="0.0"/>
+  </include> -->
+  <include file="$(find fleet_turtle)/launch/amcl_robot.launch" >
+    <arg name="robot_name" value="TOI"/>
+    <arg name="initial_pose_x"  default="-2.0"/>
+    <arg name="initial_pose_y"  default="0.0"/>
+    <arg name="initial_pose_a"  default="0.0"/>
+  </include>
+  <include file="$(find fleet_turtle)/launch/amcl_robot.launch" >
+    <arg name="robot_name" value="DT0"/>
+    <arg name="initial_pose_x"  default="-2.0"/>
+    <arg name="initial_pose_y"  default="1.0"/>
+    <arg name="initial_pose_a"  default="0.0"/>
+  </include>
+  <include file="$(find fleet_turtle)/launch/amcl_robot.launch" >
+    <arg name="robot_name" value="DT1"/>
+    <arg name="initial_pose_x"  default="-2.0"/>
+    <arg name="initial_pose_y"  default="-1.0"/>
+    <arg name="initial_pose_a"  default="0.0"/>
+  </include>
+  <include file="$(find fleet_turtle)/launch/amcl_robot.launch" >
+    <arg name="robot_name" value="AT0"/>
+    <arg name="initial_pose_x"  default="2.0"/>
+    <arg name="initial_pose_y"  default="1.0"/>
+    <arg name="initial_pose_a"  default="0.0"/>
+  </include>
+  <include file="$(find fleet_turtle)/launch/amcl_robot.launch" >
+    <arg name="robot_name" value="AT1"/>
+    <arg name="initial_pose_x"  default="2.0"/>
+    <arg name="initial_pose_y"  default="0.0"/>
+    <arg name="initial_pose_a"  default="0.0"/>
+  </include>
+  <include file="$(find fleet_turtle)/launch/amcl_robot.launch" >
+    <arg name="robot_name" value="AT2"/>
+    <arg name="initial_pose_x"  default="2.0"/>
+    <arg name="initial_pose_y"  default="-1.0"/>
+    <arg name="initial_pose_a"  default="0.0"/>
+  </include>
+
+  <!-- TELEOPERATION NODE -->
+  <!-- <include if="$(arg teleoperation_mode)"
+  file="$(find fleet_turtle)/launch/include/teleop_key.launch"/> -->
+
+
+
+
+</launch>

@@ -1,0 +1,97 @@
+<launch>
+  <!-- No namespace here as we will share this description.
+       Access with slash at the beginning -->
+  <!-- <param name="robot_description"
+    command="$(find xacro)/xacro $(find multi_turtlebots_sim)/turtlebot3_description/urdf/turtlebot3_burger.urdf.xacro" /> -->
+  <arg name="ground_z" default="0.0" doc="playground z coordinate set to 0"/>
+
+  <!-- TURTLE OF INTEREST -->
+  <arg name="TOI_model" default="burger"/>
+  <arg name="TOI_x" default="-2.0"/>
+  <arg name="TOI_y" default="0.0"/>
+  
+  <!-- DEFENDING TEAM -->
+  <arg name="DT_model" default="waffle"/>
+  <arg name="DT0_x" default="-2.0"/>
+  <arg name="DT0_y" default="1.0"/>
+  <arg name="DT1_x" default="-2.0"/>
+  <arg name="DT1_y" default="-1.0"/>
+  
+  <!-- ATTACKING TEAM -->
+  <arg name="AT_model" default="burger"/>
+  <arg name="AT0_x" default="2.0"/>
+  <arg name="AT0_y" default="1.0"/>
+  <arg name="AT1_x" default="2.0"/>
+  <arg name="AT1_y" default="0.0"/>
+  <arg name="AT2_x" default="2.0"/>
+  <arg name="AT2_y" default="-1.0"/>
+
+
+  <!-- ROBOT SPAWN -->
+  
+  <group ns="TOI">
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg TOI_model).urdf.xacro" />
+    <param name="tf_prefix" value="TOI_tf" />
+    <include file="$(find fleet_turtle)/launch/single_robot.launch" >
+      <arg name="init_pose" value="-x $(arg TOI_x) -y $(arg TOI_y) -z $(arg ground_z)" />
+      <!-- <arg name="robot_name"  value="TOI" /> -->
+      <arg name="role" value="TOI"/>
+    </include>
+  </group>
+
+  <group ns="DT0">
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg DT_model).urdf.xacro" />
+    <param name="tf_prefix" value="DT0_tf" />
+    <include file="$(find fleet_turtle)/launch/single_robot.launch" >
+      <arg name="init_pose" value="-x $(arg DT0_x) -y $(arg DT0_y) -z $(arg ground_z)" />
+      <!-- <arg name="robot_name"  value="DT0" /> -->
+      <arg name="role" value="DT"/>
+     <arg name="robot_number" value="0"/>
+    </include>
+  </group>
+
+  <group ns="DT1">
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg DT_model).urdf.xacro" />
+    <param name="tf_prefix" value="DT1_tf" />
+    <include file="$(find fleet_turtle)/launch/single_robot.launch" >
+      <arg name="init_pose" value="-x $(arg DT1_x) -y $(arg DT1_y) -z $(arg ground_z)" />
+      <!-- <arg name="robot_name"  value="DT1" /> -->
+      <arg name="role" value="DT"/>
+      <arg name="robot_number" value="1"/>
+    </include>
+  </group>
+
+  <group ns="AT0">
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg AT_model).urdf.xacro" />
+    <param name="tf_prefix" value="AT0_tf" />
+    <include file="$(find fleet_turtle)/launch/single_robot.launch" >
+      <arg name="init_pose" value="-x $(arg AT0_x) -y $(arg AT0_y) -z $(arg ground_z)" />
+      <!-- <arg name="robot_name"  value="AT0" /> -->
+      <arg name="role" value="AT"/>
+      <arg name="robot_number" value="0"/>
+    </include>
+  </group>
+
+  <group ns="AT1">
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg AT_model).urdf.xacro" />
+    <param name="tf_prefix" value="AT1_tf" />
+    <include file="$(find fleet_turtle)/launch/single_robot.launch" >
+      <arg name="init_pose" value="-x $(arg AT1_x) -y $(arg AT1_y) -z $(arg ground_z)" />
+      <!-- <arg name="robot_name"  value="AT1" /> -->
+      <arg name="role" value="AT"/>
+      <arg name="robot_number" value="1"/>
+    </include>
+  </group>
+
+  <group ns="AT2">
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg AT_model).urdf.xacro" />
+    <param name="tf_prefix" value="AT2_tf" />
+    <include file="$(find fleet_turtle)/launch/single_robot.launch" >
+      <arg name="init_pose" value="-x $(arg AT2_x) -y $(arg AT2_y) -z $(arg ground_z)" />
+      <!-- <arg name="robot_name"  value="AT2" /> -->
+      <arg name="role" value="AT"/>
+      <arg name="robot_number" value="2"/>
+    </include>
+  </group>
+
+</launch>

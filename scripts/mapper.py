@@ -10,7 +10,7 @@ class mapperNode:
     def __init__(self):
         self.completionTopic=rospy.get_param('~completed_exploration_topic','/exploration_completed')
         rospy.Subscriber(self.completionTopic,std_msgs.msg.Bool,self.mappingRequest,queue_size=1)
-        self.mapName=rospy.get_param('~map_location','/catkin_ws/src/navigationturt/maps/map_')
+        self.mapName=rospy.get_param('~map_location','/catkin_ws/src/fleet_turtle/maps/map_')
         self.mappingCommand="rosrun map_server map_saver -f "
 
         print('==#== expection std_msgs.msg.Bool on {} ==#=='.format(self.completionTopic))

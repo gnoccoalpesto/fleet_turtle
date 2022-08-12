@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from navigationturt.msg import Setpoint
+from fleet_turtle.msg import Setpoint
 from geometry_msgs.msg import Twist#, Vector3
 from nav_msgs.msg import Odometry
 # implement odometry msgs

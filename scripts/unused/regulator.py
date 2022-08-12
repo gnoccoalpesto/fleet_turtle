@@ -2,8 +2,8 @@
 
 from actionlib.action_server import ActionServer
 import rospy
-from navigationturt.msg import Setpoint 
-from navigationturt.msg import SetpointAction
+from fleet_turtle.msg import Setpoint 
+from fleet_turtle.msg import SetpointAction
 from geometry_msgs.msg import Twist#, Vector3
 from nav_msgs.msg import Odometry
 import actionlib

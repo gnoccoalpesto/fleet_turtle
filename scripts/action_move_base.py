@@ -8,8 +8,8 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from geometry_msgs.msg import Twist,PoseStamped
 # import tf2_ros
 from tf.transformations import quaternion_from_euler, euler_from_quaternion
-from navigationturt.msg import Setpoint 
-# from navigationturt.msg import SetpointAction
+from fleet_turtle.msg import Setpoint 
+# from fleet_turtle.msg import SetpointAction
 from nav_msgs.msg import Odometry
 from nav_msgs.srv import GetPlanRequest,GetPlan,GetPlanResponse
 # from read_from_txt import extractSingleObjective,readObjectivesFromTextFile
@@ -171,7 +171,7 @@ class navigationNode():
             self.requestNewGoal(coord2D(*newGoal))
         elif self.targetsServed==self.totalTargets:
             text1='Objectives list fully served!\npublish '
-            text2='navigationturt.msg.Setpoint on /Setpoint to request new targets'
+            text2='fleet_turtle.msg.Setpoint on /Setpoint to request new targets'
             print(text1+text2)
             self.targetsTimer.shutdown()
             # starts again listener on /Setpoint

@@ -5,7 +5,7 @@ from read_from_txt import readObjectivesFromTextFile, extractSingleObjective
 
 if __name__=='__main__':
 
-    myfile="/catkin_ws/src/navigationturt/scripts/objective.txt"
+    myfile="/catkin_ws/src/fleet_turtle/scripts/objective.txt"
     index=1
     mydata=(extractSingleObjective(readObjectivesFromTextFile(myfile),index))
 

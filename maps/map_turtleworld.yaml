@@ -1,4 +1,4 @@
-image: /catkin_ws/src/navigationturt/maps/map_20211018_125057.pgm
+image: /escort_ws/src/fleet_turtle/maps/map_turtleworld.pgm
 resolution: 0.050000
 origin: [-10.000000, -10.000000, 0.000000]
 negate: 0

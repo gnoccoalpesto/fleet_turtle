@@ -1,0 +1,78 @@
+<launch>
+  <!-- LEGEND:
+      1: TOI
+      2,3: DT
+      4,5,6: AT
+  -->
+
+  <!-- <param name="robot_description"
+    command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" /> -->
+
+<!-- ROBOTS' NAMESPACES -->
+  <group ns="robot1">
+    <param name="robot_description" 
+          command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
+      <arg name="init_pose" value="-x -2 -y 0 -z 0" />
+      <arg name="orientation" value="-R 0.0 -P 0.0 -Y 0.0" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+  </group>
+
+  <group ns="robot2">
+    <param name="robot_description" 
+          command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
+      <arg name="init_pose" value="-x -2 -y -1 -z 0" />
+      <arg name="orientation" value="-R 0.0 -P 0.0 -Y 0.0" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+  </group>
+
+  <group ns="robot3">
+    <param name="robot_description" 
+          command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
+    <param name="tf_prefix" value="robot3_tf" />
+    <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
+      <arg name="init_pose" value="-x -2 -y 1 -z 0" />
+      <arg name="orientation" value="-R 0.0 -P 0.0 -Y 0.0" />
+      <arg name="robot_name"  value="Robot3" />
+    </include>
+  </group>
+
+  <group ns="robot4">
+    <param name="robot_description" 
+          command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <param name="tf_prefix" value="robot4_tf" />
+    <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
+      <arg name="init_pose" value="-x 2 -y -1 -z 0" />
+      <arg name="orientation" value="-R 0.0 -P 0.0 -Y 3.1415" />
+      <arg name="robot_name"  value="Robot4" />
+    </include>
+  </group>
+
+  <group ns="robot5">
+    <param name="robot_description" 
+          command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <param name="tf_prefix" value="robot5_tf" />
+    <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
+      <arg name="init_pose" value="-x 2 -y 0 -z 0" />
+      <arg name="orientation" value="-R 0.0 -P 0.0 -Y 3.1415" />
+      <arg name="robot_name"  value="Robot5" />
+    </include>
+  </group>
+
+  <group ns="robot6">
+    <param name="robot_description" 
+          command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+    <param name="tf_prefix" value="robot6_tf" />
+    <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
+      <arg name="init_pose" value="-x 2 -y 1 -z 0" />
+      <arg name="orientation" value="-R 0.0 -P 0.0 -Y 3.1415" />
+      <arg name="robot_name"  value="Robot6" />
+    </include>
+  </group>
+
+</launch>

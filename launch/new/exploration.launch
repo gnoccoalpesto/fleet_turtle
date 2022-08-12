@@ -2,7 +2,7 @@
 <launch>
   <!--env name="TURTLEBOT3_MODEL" value="burger"/-->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
-  <arg name="map_file" default="$(find navigationturt)/maps/map.yaml"/>
+  <arg name="map_file" default="$(find fleet_turtle)/maps/map.yaml"/>
   <arg name="slam_methods" default="gmapping"/>
   <arg name="node_start_delay" default="1.0"/>
   <arg name="open_rviz" default="true"/>
@@ -10,7 +10,7 @@
 
 
   <!-- SLAM -->
-  <include file="$(find navigationturt)/launch/include/slam.launch">
+  <include file="$(find fleet_turtle)/launch/include/slam.launch">
     <arg name="slam_methods" value="$(arg slam_methods)"/>
     <arg name="open_rviz" value="$(arg open_rviz)"/>
   </include><!---->
@@ -18,7 +18,7 @@
   <group unless="$(arg teleoperation_mode)">
   <!-- EXPLORATION NODE -->
     <node name="explorer" 
-          pkg="navigationturt" 
+          pkg="fleet_turtle" 
           type="explorer.py" 
           respawn="true" 
           output="screen" 
@@ -29,12 +29,12 @@
 
       <!-- MAPPER NODE -->
   <node name="mapper" 
-        pkg="navigationturt" 
+        pkg="fleet_turtle" 
         type="mapper.py"  
         respawn="true" 
         output="screen" 
         args="" >
-    <param name='~map_location' value="/catkin_ws/src/navigationturt/maps/map"/>
+    <param name='~map_location' value="/catkin_ws/src/fleet_turtle/maps/map"/>
   </node><!--
 	      launch-prefix="xterm -e /bin/bash -c 'sleep $(arg node_start_delay); $0 $@' "
         -->
