@@ -9,6 +9,11 @@
     <arg name="gui" value="$(arg gui)"/>
   </include>
 
+<!-- VISUALIZATION -->
+  <node name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find fleet_turtle)/rviz/turtlebot3_navigation.rviz" 
+  />
+
 
   <!-- NAVIGATION -->
   <include file="$(find fleet_turtle)/launch/navigation.launch">

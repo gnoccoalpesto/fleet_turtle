@@ -25,7 +25,7 @@
           command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
     <param name="tf_prefix" value="robot2_tf" />
     <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
-      <arg name="init_pose" value="-x -2 -y -1 -z 0" />
+      <arg name="init_pose" value="-x -1.5 -y -0.5 -z 0" />
       <arg name="orientation" value="-R 0.0 -P 0.0 -Y 0.0" />
       <arg name="robot_name"  value="Robot2" />
     </include>
@@ -36,7 +36,7 @@
           command="$(find xacro)/xacro  $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
     <param name="tf_prefix" value="robot3_tf" />
     <include file="$(find fleet_turtle)/launch/one_robot_O.launch" >
-      <arg name="init_pose" value="-x -2 -y 1 -z 0" />
+      <arg name="init_pose" value="-x -1.5 -y 0.5 -z 0" />
       <arg name="orientation" value="-R 0.0 -P 0.0 -Y 0.0" />
       <arg name="robot_name"  value="Robot3" />
     </include>
@@ -73,6 +73,6 @@
       <arg name="orientation" value="-R 0.0 -P 0.0 -Y 3.1415" />
       <arg name="robot_name"  value="Robot6" />
     </include>
-  </group>
+  </group> 
 
 </launch>

@@ -36,7 +36,7 @@ class navigationNode():
         # self.MAX_PROXIMITY_COUNT=17
         
         #TODO: get namespaces from the aether (or use as ns robot_names, hardcoded smwhere else)
-        ROBOT_NAMES=['robot1','robot2','robot3','robot4','robot5']
+        ROBOT_NAMES=['robot1','robot2','robot3','robot4','robot5','robot6']
         self.move_base_client=[actionlib.SimpleActionClient('/'+robot+'/move_base',MoveBaseAction) for robot in ROBOT_NAMES]
         [[client.wait_for_server(), print("move base client for robot{} online".format(robot_number+1))]  \
             for robot_number,client in enumerate(self.move_base_client)]
@@ -190,6 +190,7 @@ class navigationNode():
         elif robot=="robot3": client_number=2
         elif robot=="robot4": client_number=3
         elif robot=="robot5": client_number=4
+        elif robot=="robot6": client_number=5
         else:
             print("requested robot unavailable, aborting"); return False
         self.move_base_client[client_number].send_goal(goal)
@@ -199,10 +200,10 @@ class navigationNode():
         # activates motion monitor
         # self.resetMonitor()
         # self.monitor=rospy.Timer(rospy.Duration(self.MOTION_MONITOR_PERIOD),self.motionMonitor)#straight_recovery))
-        request_result=self.move_base_client[client_number].wait_for_result() if duration==0\
-                else self.move_base_client[client_number].wait_for_result(timeout=rospy.Duration(duration))
+        # request_result=self.move_base_client[client_number].wait_for_result() if duration==0\
+        #         else self.move_base_client[client_number].wait_for_result(timeout=rospy.Duration(duration))
         # self.monitor.shutdown()
-        return request_result
+        # return request_result
 
     # UTILITIES ###################################################################
     @staticmethod
@@ -221,3 +222,14 @@ if __name__ == '__main__':
         rospy.spin()
     except KeyboardInterrupt or rospy.ROSInternalException:
         rospy.loginfo("turtle motion aborted!")
+
+
+
+        """
+        WINNING CONDITION: x_TOI>1.5
+
+        TOI GOAL: generated inside rectangular area:
+                        x in [1.6,2], y in [-1,+1]
+        
+        
+        """

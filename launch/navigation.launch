@@ -10,7 +10,7 @@
 
 <!-- MAP -->
   <node name="map_server" pkg="map_server" type="map_server" 
-        args="$(find fleet_turtle)/maps/map_turtleworld.yaml" >
+        args="$(find fleet_turtle)/maps/map_square.yaml" >
     <param name="frame_id" value="map" 
   /></node>
 
@@ -54,6 +54,7 @@
         file="$(find fleet_turtle)/launch/teleoperation.launch">
       <arg name="robot_number" value="$(arg robot_number)"/>
   </include>
+
 <!-- MOVE_BASE PLANNING STACK-->
 	<include file="$(find fleet_turtle)/launch/move_base_1_O.launch" />
 	<include file="$(find fleet_turtle)/launch/move_base_2_O.launch" />	
@@ -62,9 +63,5 @@
 	<include file="$(find fleet_turtle)/launch/move_base_5_O.launch" />	
 	<include file="$(find fleet_turtle)/launch/move_base_6_O.launch" />
 
-<!-- VISUALIZATION -->
-  <node name="rviz" pkg="rviz" type="rviz" 
-        args="-d $(find fleet_turtle)/rviz/turtlebot3_navigation.rviz" 
-  />
 
 </launch>

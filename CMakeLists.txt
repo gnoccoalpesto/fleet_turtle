@@ -68,13 +68,12 @@ include_directories(
 # )
 
 catkin_install_python(PROGRAMS
+  scripts/referee.py
   scripts/explorer.py
   scripts/navigator.py
   scripts/action_move_base.py
   scripts/initial_position.py
   scripts/mapper.py
-  scripts/read_from_txt.py
-  scripts/reference_listener.py
   scripts/uv_cleaner.py 
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
